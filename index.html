@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--
+    ~ Im Daniel Hakim
+    GOOD YOU'RE READING SOURCE CODE,
+    THAT'S WHAT CTF PERSON PLAYING A CYBERSECURITY GAME
+-->
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=0.1"/>
+  <meta name="description" content="This is fast render SPA website"/>
+  <title>SPA Hash Routing</title>
+  <style>
+    *{
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    body{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    p{
+      line-height: 7px;
+      text-align: justify;
+    }
+    nav{
+      padding: 5px;
+      border: 1px solid;
+    }
+    h2{
+      text-align: center;
+    }
+    nav a{
+      margin: 0 20px;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="#/">Home</a> |
+    <a href="#/about">About</a> |
+    <a href="#/experience">Experience</a><!-- |
+    <a href="#/yHva6gwd">Flag</a>-->
+  </nav>
+  <div id="app"></div>
+  <script>
+    function renderPage() {
+      // check for any hash route, if none set to default hash index
+      var j = "lgzTnZYME4xTjJWOQ==";var i = "D"
+      const hash = location.hash || '#/';
+      const app = document.getElementById('app');
+      if (hash === '#/') {
+        //default route
+        app.innerHTML = `
+        <h2>Hello this my home page</h2>
+        <p>Hello this is my website, never heard about me?<p>
+        Goto <a href="#/about">Whoami</a></p>
+        `;
+      } else if (hash === '#/about') {
+        //route to about content
+        app.innerHTML = `<h2>About me and this website</h2>
+        <p>My name is Daniel Hakim, you can be friend with me just through telegram.</p>
+        <p><br>I know this website process so fast, it's because this website doesn't<p>
+        Link you into another page, just update the content without reloading current page<p>
+        where you are.<p><br>
+        We call it as Single Page Application (SPA), cool right?<p>
+        <br>This website was maded with a lots of javascript code to handle url route.<p>
+        Like bootstrap framework but hardcoded.<p>
+        I don't have time to design this website, just a stupid code.</p>`;
+      } else if(hash == '#/experience'){
+        //route to experience content
+        app.innerHTML = `<h2>My Experience</h2>
+        <p>Nothing, learning coding just one of my hobby</p>
+        <p>I start learning coding within 5 years ago, but just a hobby.<p><br>
+        Not for my course.<p>
+        I do learn HTML, CSS, JAVASCRIPT of course, PHP, C, C++,<p>
+        C# a little bit, PYTHON of course, BASH, and more but i forgot all of its.<p><br><br>
+        Try to find flag in this website<p>
+        Clue: This website include hidden page link. good luck</p>`
+      } else if(hash == '#/yHva6gwd'){
+        window.alert("That's Excellent!")
+        app.innerHTML = `<p>I like to do something thrice, can you read this?</p>${window['btoa']("Wmt4Qlozd"+i+"VUMVZmTkZJe"+j)}<br>
+        <br><sub>send the actual flag to my whatsapp!</sub>`
+      } else {
+        //404 status code
+        app.innerHTML = '<h2>404 - Not found</h2>';
+      }
+    }
+
+    // Bila hash berubah
+    window.addEventListener('hashchange', renderPage);
+
+    // Bila mula load
+    renderPage();
+  </script>
+
+</body>
+</html>
